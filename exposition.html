@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exposition: 3D Modeling and Cognitive Enhancement - English 4 Project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Apply Inter font globally */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        /* Style to indicate active nav link */
+        .nav-active {
+            border-bottom-width: 2px;
+            border-color: #3b82f6; /* Blue-500 */
+            color: #1f2937; /* Gray-800 */
+        }
+        /* Styling for article content */
+        .article-content {
+            line-height: 1.7;
+        }
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem; /* 12px */
+            margin-top: 2rem; /* 32px */
+            margin-bottom: 1rem; /* 16px */
+            padding-bottom: 0.5rem; /* 8px */
+            border-bottom: 2px solid #3b82f6; /* Blue-500 */
+        }
+        .section-heading i {
+            color: #3b82f6; /* Blue-500 */
+            font-size: 1.25rem; /* 20px */
+        }
+        .section-heading h2 {
+            font-size: 1.5rem; /* 24px */
+            font-weight: 600; /* Semibold */
+            color: #1f2937; /* Gray-800 */
+            margin: 0; /* Reset margin */
+        }
+         .article-content p {
+            margin-bottom: 1em;
+            color: #4b5563; /* Gray-600 */
+         }
+         .content-image {
+            border-radius: 0.5rem; /* 8px */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            object-fit: cover; /* Ensure image covers the area */
+            aspect-ratio: 16 / 10; /* Maintain aspect ratio */
+            cursor: pointer; /* Indicate interactivity */
+            transition: transform 0.2s ease-in-out;
+         }
+         .content-image:hover {
+            transform: scale(1.03); /* Slight zoom on hover */
+         }
+         .conclusion-section {
+             background-color: #eef2ff; /* Indigo-50 */
+             padding: 1.5rem;
+             border-radius: 0.5rem;
+             margin-top: 2rem;
+             border-left: 4px solid #6366f1; /* Indigo-500 */
+         }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+            padding-top: 60px; /* Location of the box */
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 85%;
+            max-height: 85%;
+            object-fit: contain; /* Scale down if needed, maintain aspect ratio */
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .modal-close:hover,
+        .modal-close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        /* Add Animation */
+        .modal-content {
+            animation-name: zoom;
+            animation-duration: 0.4s;
+        }
+        @keyframes zoom {
+            from {transform:scale(0)}
+            to {transform:scale(1)}
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                     <a href="index.html" class="flex-shrink-0 flex items-center text-xl font-bold text-gray-700 hover:text-blue-600 transition duration-150 ease-in-out">
+                        MyProject
+                    </a>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="about.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">About</a>
+                        <a href="it-items.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">IT Items</a>
+                        <a href="email.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Formal Email</a>
+                        <a href="exposition.html" class="nav-active text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" aria-current="page">Exposition</a>
+                        <a href="new-tech.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">New Tech</a>
+                        <a href="informative.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Informative</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" id="mobile-menu-button" class="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg id="menu-icon-closed" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="menu-icon-open" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="sm:hidden hidden" id="mobile-menu">
+             <div class="pt-2 pb-3 space-y-1">
+                <a href="about.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">About</a>
+                <a href="it-items.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">IT Items</a>
+                <a href="email.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Formal Email</a>
+                 <a href="exposition.html" class="block pl-3 pr-4 py-2 border-l-4 border-blue-500 bg-blue-50 text-blue-700 text-base font-medium" aria-current="page">Exposition</a>
+                <a href="new-tech.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">New Tech</a>
+                <a href="informative.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Informative</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <article class="bg-white p-6 sm:p-10 rounded-lg shadow-xl article-content">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center">Shaping Minds in Three Dimensions</h1>
+             <p class="text-center text-lg text-gray-500 mb-10">Exploring the Cognitive Benefits of 3D Modeling and Rendering</p>
+
+            <div class="mb-10 text-lg text-gray-700">
+                <p>In an increasingly digital world, the tools we use shape not only our creations but also our cognitive abilities. Among these tools, 3D modeling and rendering software, often associated with entertainment and design industries, offer significant, though perhaps less obvious, benefits for intellectual development. Engaging with the complexities of creating and visualizing three-dimensional space actively cultivates critical cognitive skills, including spatial reasoning, problem-solving, and attention to detail, thereby contributing to enhanced cognitive function and a more versatile intellect.</p>
+            </div>
+
+            <section class="mb-12">
+                <div class="section-heading">
+                    <i class="fas fa-brain"></i>
+                    <h2>Developing Spatial Intelligence</h2>
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                    <div class="md:w-2/3">
+                        <p>At its core, 3D modeling requires the artist or designer to constantly think spatially. One must mentally manipulate objects in three dimensions, understanding how forms interact, how light affects surfaces, and how perspective changes appearance. This process directly exercises and strengthens spatial reasoning – the ability to visualize and mentally rotate objects in space.</p>
+                        <p>This skill is crucial not only in design and engineering fields but also translates to better navigation, understanding complex diagrams, and even certain aspects of mathematical thinking. Software like Blender or Maya becomes a virtual gymnasium for the brain's spatial processing centers.</p>
+                    </div>
+                    <div class="md:w-1/3">
+                        <img src="images/blender rigging.png" alt="Abstract representation of spatial reasoning" class="content-image">
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <div class="section-heading">
+                    <i class="fas fa-puzzle-piece"></i>
+                    <h2>Fostering Problem-Solving Skills</h2>
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                     <div class="md:w-1/3 order-2 md:order-1">
+                         <img src="images/error.png" alt="Abstract representation of problem solving or code" class="content-image">
+                    </div>
+                    <div class="md:w-2/3 order-1 md:order-2">
+                        <p>Creating a convincing 3D model or scene is rarely a straightforward process. Users frequently encounter technical hurdles and creative challenges. How can a complex shape be modeled efficiently? Why isn't the lighting rendering as expected? How can a texture be applied realistically to an irregular surface? What is a good topology to use on a certain model?</p>
+                        <p>Answering these questions involves systematic troubleshooting, experimentation, and logical deduction. Users learn to break down complex problems into smaller, manageable parts, test different solutions, and learn from errors – the very essence of effective problem-solving. This iterative process of identifying issues and devising solutions cultivates resilience and analytical thinking applicable far beyond the software itself.</p>
+                    </div>
+                </div>
+            </section>
+
+             <section class="mb-12">
+                <div class="section-heading">
+                    <i class="fas fa-search-plus"></i>
+                    <h2>Cultivating Attention to Detail & Technical Acumen</h2>
+                </div>
+                 <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                    <div class="md:w-2/3">
+                        <p>Producing high-quality 3D work demands meticulous attention to detail. From refining the topology of a mesh (the arrangement of polygons) to adjusting minute lighting parameters or perfecting texture maps, precision is key. Users learn to observe closely, identify subtle imperfections, and make precise adjustments.</p>
+                        <p>Furthermore, mastering 3D software inherently involves learning complex technical interfaces, understanding intricate workflows, and keeping abreast of software updates and rendering techniques. This constant learning enhances technical literacy and adaptability, valuable assets in any modern profession.</p>
+                    </div>
+                    <div class="md:w-1/3">
+                         <img src="images/whales.png" alt="Abstract representation of focus or precision" class="content-image">
+                    </div>
+                </div>
+            </section>
+
+            <section class="conclusion-section">
+                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Conclusion: Beyond the Pixels</h3>
+                 <p class="text-gray-700">While often viewed through the lens of artistic output or technical utility, the practice of 3D modeling and rendering serves as a potent cognitive training ground. By demanding sophisticated spatial visualization, persistent problem-solving, and rigorous attention to detail, it actively enhances key aspects of intelligence, making individuals not just better designers or artists, but potentially more adept thinkers and learners overall.</p>
+            </section>
+
+        </article>
+    </main>
+
+    <footer class="bg-white mt-auto">
+        <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+            &copy; 2025 Arvel. English 4 Final Project.
+        </div>
+    </footer>
+
+    <div id="imageModal" class="modal">
+      <span class="modal-close" id="modalCloseButton">&times;</span>
+      <img class="modal-content" id="modalImage">
+    </div>
+
+     <script>
+        // --- Mobile Menu Toggle ---
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconClosed = document.getElementById('menu-icon-closed');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuIconClosed.classList.toggle('hidden');
+            menuIconClosed.classList.toggle('block');
+            menuIconOpen.classList.toggle('hidden');
+            menuIconOpen.classList.toggle('block');
+        });
+
+        // --- Image Modal Logic ---
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeBtn = document.getElementById('modalCloseButton');
+        // Select images specifically intended for the modal
+        const modalTriggerImages = document.querySelectorAll('.content-image');
+
+        // Function to open the modal
+        function openModal(src) {
+            modal.style.display = "flex"; // Use flex to help center content
+            modalImg.src = src;
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Add click listeners to all designated modal trigger images
+        modalTriggerImages.forEach(img => {
+            img.onclick = function() {
+                openModal(this.src);
+            }
+        });
+
+        // Add click listener to the close button
+        closeBtn.onclick = closeModal;
+
+        // Add click listener to close modal when clicking the background
+        modal.onclick = function(event) {
+          // Check if the click is directly on the modal background (not the image itself)
+          if (event.target === modal) {
+            closeModal();
+          }
+        }
+
+        // Add keyboard listener to close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && modal.style.display === "flex") {
+                closeModal();
+            }
+        });
+
+    </script>
+
+</body>
+</html>

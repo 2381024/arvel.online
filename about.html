@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Myself - English 4 Project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Apply Inter font globally */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        /* Style to indicate active nav link */
+        .nav-active {
+            border-bottom-width: 2px;
+            border-color: #3b82f6; /* Blue-500 */
+            color: #1f2937; /* Gray-800 */
+        }
+        /* Styling for article content */
+        .article-content {
+            line-height: 1.7; /* Slightly increased line height */
+        }
+         .article-content p {
+            margin-bottom: 1em;
+         }
+         .article-content strong {
+             color: #1d4ed8; /* Darker blue for emphasis */
+         }
+          .article-content em {
+             color: #52525b; /* Zinc-600 for italics */
+         }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                     <a href="index.html" class="flex-shrink-0 flex items-center text-xl font-bold text-gray-700 hover:text-blue-600 transition duration-150 ease-in-out">
+                        MyProject
+                    </a>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="about.html" class="nav-active text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" aria-current="page">About</a>
+                        <a href="it-items.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">IT Items</a>
+                        <a href="email.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Formal Email</a>
+                        <a href="exposition.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Exposition</a>
+                        <a href="new-tech.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">New Tech</a>
+                        <a href="informative.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Informative</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" id="mobile-menu-button" class="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg id="menu-icon-closed" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="menu-icon-open" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                 <a href="about.html" class="block pl-3 pr-4 py-2 border-l-4 border-blue-500 bg-blue-50 text-blue-700 text-base font-medium" aria-current="page">About</a>
+                <a href="it-items.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">IT Items</a>
+                <a href="email.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Formal Email</a>
+                <a href="exposition.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Exposition</a>
+                <a href="new-tech.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">New Tech</a>
+                <a href="informative.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Informative</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <article class="bg-white p-8 rounded-lg shadow-md article-content">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-3">About Myself: A Journey of Digital Discovery</h1>
+            <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                <p>My name is <strong>Arvel Albright Peyoh</strong>, and I am currently <strong>19</strong> years old, living in <strong>Bandung</strong>. Like many others, my world shifted significantly during the COVID-19 pandemic. Confined mostly indoors, the familiar glow of my somewhat slow laptop screen became more than just a portal for online classes or entertainment; it transformed into a vast, digital landscape ripe for exploration. My trusty companion throughout this journey was my Windows 10 laptop.</p>
+                <p>Starting around the age of sixteen, simple curiosity quickly blossomed into a full-fledged fascination with technology. The Windows 10 operating system, which I had previously taken somewhat for granted, revealed itself as a complex and endlessly configurable environment. I wasn't just using the computer; I felt like I was interacting <em>with</em> it. I recall spending hours delving into the Control Panel, tweaking settings I barely understood, always hoping it might optimize performance and make my laptop run just a bit better. Each successful tweak, each solved problem, felt like a small victory, fueling my desire to learn more and push further.</p>
+                <p>Paradoxically, the isolation of the pandemic opened up new avenues for connection – primarily with the digital world and online communities of fellow tech enthusiasts. I learned about hardware components by watching teardown videos, explored diverse software applications beyond the standard suite, and even tentatively dipped my toes into the basics of coding with Python. Windows 10 served as my personal sandbox, my digital laboratory. It was within this environment that I truly learned the importance of troubleshooting, the patience required to diagnose an issue, and the immense satisfaction that comes from finding a solution independently. This period of intense exploration also sparked a keen interest in <strong>graphic design</strong>.</p>
+                <p>Beyond the acquisition of technical skills, this journey of exploration taught me resilience and underscored the value of self-directed learning. It vividly demonstrated that even within the confines of my room, a universe of knowledge was accessible through that glowing screen. Today, while my activities have expanded beyond simply tinkering with OS settings, that foundational experience with Windows 10 remains a core part of my background. It continues to shape my approach to technology and fuels my ongoing passion for creative fields like <strong>3D rendering</strong>. It was, in essence, a unique time that transformed my computer from a mere tool into a compelling canvas for discovery.</p>
+                </div>
+        </article>
+    </main>
+
+    <footer class="bg-white mt-auto">
+        <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+            &copy; 2025 Arvel. English 4 Final Project.
+        </div>
+    </footer>
+
+     <script>
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconClosed = document.getElementById('menu-icon-closed');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuIconClosed.classList.toggle('hidden');
+            menuIconClosed.classList.toggle('block');
+            menuIconOpen.classList.toggle('hidden');
+            menuIconOpen.classList.toggle('block');
+        });
+    </script>
+
+</body>
+</html>

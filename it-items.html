@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Change Monitor Refresh Rate - English 4 Project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Apply Inter font globally */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        /* Style to indicate active nav link */
+        .nav-active {
+            border-bottom-width: 2px;
+            border-color: #3b82f6; /* Blue-500 */
+            color: #1f2937; /* Gray-800 */
+        }
+        /* Style for step number */
+        .step-number {
+            background-color: #3b82f6; /* Blue-500 */
+            color: white;
+            border-radius: 50%;
+            width: 2.5rem; /* 40px */
+            height: 2.5rem; /* 40px */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 0.75rem; /* 12px */
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+        /* Ensure images don't exceed container width */
+        img.step-image { /* Added class for targeting */
+            max-width: 100%;
+            height: auto;
+            display: block; /* Remove extra space below image */
+            cursor: pointer; /* Indicate interactivity */
+            transition: transform 0.2s ease-in-out;
+        }
+        img.step-image:hover {
+            transform: scale(1.03); /* Slight zoom on hover */
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+            padding-top: 60px; /* Location of the box */
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 85%;
+            max-height: 85%;
+            object-fit: contain; /* Scale down if needed, maintain aspect ratio */
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .modal-close:hover,
+        .modal-close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        /* Add Animation */
+        .modal-content {
+            animation-name: zoom;
+            animation-duration: 0.4s;
+        }
+        @keyframes zoom {
+            from {transform:scale(0)}
+            to {transform:scale(1)}
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                     <a href="index.html" class="flex-shrink-0 flex items-center text-xl font-bold text-gray-700 hover:text-blue-600 transition duration-150 ease-in-out">
+                        MyProject
+                    </a>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="about.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">About</a>
+                        <a href="it-items.html" class="nav-active text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" aria-current="page">IT Items</a>
+                        <a href="email.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Formal Email</a>
+                        <a href="exposition.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Exposition</a>
+                        <a href="new-tech.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">New Tech</a>
+                        <a href="informative.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Informative</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" id="mobile-menu-button" class="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg id="menu-icon-closed" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="menu-icon-open" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="sm:hidden hidden" id="mobile-menu">
+             <div class="pt-2 pb-3 space-y-1">
+                <a href="about.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">About</a>
+                 <a href="it-items.html" class="block pl-3 pr-4 py-2 border-l-4 border-blue-500 bg-blue-50 text-blue-700 text-base font-medium" aria-current="page">IT Items</a>
+                <a href="email.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Formal Email</a>
+                <a href="exposition.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Exposition</a>
+                <a href="new-tech.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">New Tech</a>
+                <a href="informative.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Informative</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <article class="bg-white p-6 sm:p-8 rounded-lg shadow-md">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-3 text-center">Procedure: How to Change Your Monitor's Refresh Rate</h1>
+            <div class="text-gray-700 leading-relaxed space-y-5 mb-10 max-w-4xl mx-auto text-lg">
+                <p>Have you ever noticed that motion on your computer screen doesn't look as smooth as it could, especially when playing games or watching fast-paced videos? One setting that can make a big difference is your monitor's refresh rate. Many people, especially those less familiar with computer settings, might overlook this, potentially missing out on a better visual experience.</p>
+                <h2 class="text-2xl font-semibold text-gray-800 pt-4">What is Refresh Rate?</h2>
+                <p>Think of refresh rate as how many times your monitor updates the picture on the screen every second. It's measured in Hertz (Hz). A standard monitor might be 60Hz, meaning it refreshes the image 60 times per second. However, many modern monitors, especially those designed for gaming, can support higher refresh rates like 120Hz, 144Hz, or even more. A higher refresh rate generally results in smoother-looking motion because there are more frames displayed each second, making movements appear less blurry or choppy.</p>
+                <p>If you have a monitor capable of a higher refresh rate, Windows might not automatically use the highest setting. Checking and adjusting it can significantly improve how smooth things look on your screen. It's a simple change that can have a noticeable impact!</p>
+            </div>
+
+            <h2 class="text-2xl font-semibold text-gray-800 pt-4 mb-8 text-center border-t pt-6">Steps to Change Refresh Rate (Windows 10/11)</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-3xl mx-auto">The steps are very similar for both Windows 10 and Windows 11. Don't worry, it's easier than it sounds! Follow the steps below (click images to enlarge).</p>
+
+            <div class="space-y-12">
+
+                <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                    <div class="order-2 md:order-1">
+                        <span class="step-number">1</span>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Right-click on your Desktop</h3>
+                        <p class="text-gray-600">Find an empty area on your main computer screen (your desktop background) and click the right mouse button. A menu will pop up.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                    <div class="md:w-1/2 order-1 md:order-2">
+                         <span class="step-number">2</span>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Select 'Display settings'</h3>
+                        <p class="text-gray-600">Look for an option called "Display settings" in the menu and click on it with the left mouse button. This will open the main display configuration window.</p>
+                    </div>
+                     <div class="md:w-1/2 order-2 md:order-1">
+                         <img src="images/right click.png" alt="Placeholder image showing the 'Display settings' option in the context menu" class="step-image rounded-lg shadow-md">
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                    <div class="md:w-1/2 order-2 md:order-1">
+                         <span class="step-number">3</span>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Scroll down to 'Advanced display settings'</h3>
+                        <p class="text-gray-600">In the window that opens, scroll down using your mouse wheel or the scroll bar on the side. Near the bottom, you should find a link or option called "Advanced display settings" (it might just say "Advanced display" in Windows 11). Click on this.</p>
+                    </div>
+                    <div class="md:w-1/2 order-1 md:order-2">
+                         <img src="images/display settings.png" alt="Placeholder image showing the location of 'Advanced display settings'" class="step-image rounded-lg shadow-md">
+                    </div>
+                </div>
+
+                 <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                    <div class="md:w-1/2 order-1 md:order-2">
+                         <span class="step-number">4</span>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Choose the correct monitor</h3>
+                        <p class="text-gray-600">If you have multiple monitors connected, make sure the correct one is selected at the top of this new screen. It usually shows the monitor's name (e.g., Monitor 2: P27FBB-RGGL).</p>
+                    </div>
+                     <div class="md:w-1/2 order-2 md:order-1">
+                         <img src="images/monitors.png" alt="Placeholder image showing monitor selection dropdown" class="step-image rounded-lg shadow-md">
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                    <div class="order-2 md:order-1">
+                         <span class="step-number">5</span>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Find the 'Refresh rate' setting</h3>
+                        <p class="text-gray-600">Look for a dropdown menu labeled "Refresh rate" (Windows 11) or "Choose a refresh rate" (Windows 10). It will show the currently selected rate (e.g., 60 Hz).</p>
+                    </div>
+                </div>
+
+                 <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                    <div class="md:w-1/2 order-1 md:order-2">
+                         <span class="step-number">6</span>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Select the highest available rate</h3>
+                        <p class="text-gray-600">Click on the dropdown menu. You'll see a list of refresh rates your monitor supports. Click on the highest number available (e.g., if you see 60 Hz and 144 Hz, choose 144 Hz).</p>
+                    </div>
+                     <div class="md:w-1/2 order-2 md:order-1">
+                         <img src="images/refresh rate.png" alt="Placeholder image showing selection of the highest refresh rate" class="step-image rounded-lg shadow-md">
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                    <div class="md:w-1/2 order-2 md:order-1">
+                         <span class="step-number">7</span>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Confirm the change</h3>
+                        <p class="text-gray-600">Your screen might go black for a second or two as it applies the new setting. A confirmation box will likely appear asking if you want to keep these display settings. Make sure everything looks okay, and then click "Keep changes". If the screen looks strange or stays black, don't worry – just wait about 15 seconds, and it should automatically revert to the previous setting.</p>
+                    </div>
+                    <div class="md:w-1/2 order-1 md:order-2">
+                         <img src="images/keep changes.png" alt="Placeholder image showing the 'Keep changes' confirmation dialog" class="step-image rounded-lg shadow-md">
+                    </div>
+                </div>
+
+            </div> <p class="mt-12 text-center text-lg font-medium text-green-700">That's it! You've successfully checked and potentially increased your monitor's refresh rate. Enjoy the potentially smoother visuals!</p>
+
+        </article>
+    </main>
+
+    <footer class="bg-white mt-auto">
+        <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+            &copy; 2025 Arvel. English 4 Final Project.
+        </div>
+    </footer>
+
+    <div id="imageModal" class="modal">
+      <span class="modal-close" id="modalCloseButton">&times;</span>
+      <img class="modal-content" id="modalImage">
+    </div>
+
+     <script>
+        // --- Mobile Menu Toggle ---
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconClosed = document.getElementById('menu-icon-closed');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuIconClosed.classList.toggle('hidden');
+            menuIconClosed.classList.toggle('block');
+            menuIconOpen.classList.toggle('hidden');
+            menuIconOpen.classList.toggle('block');
+        });
+
+        // --- Image Modal Logic ---
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeBtn = document.getElementById('modalCloseButton');
+        const stepImages = document.querySelectorAll('.step-image'); // Get all images with the class
+
+        // Function to open the modal
+        function openModal(src) {
+            modal.style.display = "flex"; // Use flex to help center content
+            modalImg.src = src;
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Add click listeners to all step images
+        stepImages.forEach(img => {
+            img.onclick = function() {
+                openModal(this.src);
+            }
+        });
+
+        // Add click listener to the close button
+        closeBtn.onclick = closeModal;
+
+        // Add click listener to close modal when clicking the background
+        modal.onclick = function(event) {
+          // Check if the click is directly on the modal background (not the image itself)
+          if (event.target === modal) {
+            closeModal();
+          }
+        }
+
+        // Add keyboard listener to close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && modal.style.display === "flex") {
+                closeModal();
+            }
+        });
+
+    </script>
+
+</body>
+</html>

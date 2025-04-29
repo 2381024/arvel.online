@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formal Email Example - English 4 Project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Apply Inter font globally */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        /* Style to indicate active nav link */
+        .nav-active {
+            border-bottom-width: 2px;
+            border-color: #3b82f6; /* Blue-500 */
+            color: #1f2937; /* Gray-800 */
+        }
+        /* Email styling */
+        .email-container {
+            border: 1px solid #e5e7eb; /* Gray-200 */
+            border-radius: 0.5rem; /* 8px */
+            background-color: #ffffff; /* White */
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            overflow: hidden; /* Ensures rounded corners apply to children */
+        }
+        /* Styling for email structure labels */
+        .email-part {
+            padding: 1rem 1.5rem; /* More padding */
+            border-bottom: 1px dashed #d1d5db; /* Gray-300 dashed border */
+            position: relative; /* For label positioning */
+        }
+        .email-part:last-child {
+            border-bottom: none; /* Remove border for the last part */
+        }
+        .email-part-label {
+            display: inline-flex; /* Use inline-flex for alignment */
+            align-items: center; /* Vertically align icon and text */
+            font-size: 0.75rem; /* 12px */
+            font-weight: 600; /* Semibold */
+            color: #4b5563; /* Gray-600 */
+            background-color: #e5e7eb; /* Gray-200 */
+            padding: 0.25rem 0.6rem; /* Smaller padding */
+            border-radius: 0.25rem; /* 4px */
+            margin-bottom: 0.75rem; /* 12px */
+        }
+        .email-part-label i {
+            margin-right: 0.35rem; /* Space between icon and text */
+            color: #6b7280; /* Gray-500 */
+        }
+        .email-body-content p:first-of-type {
+            margin-top: 0; /* Remove extra top margin if needed */
+        }
+        .email-body-content p:last-of-type {
+             margin-bottom: 0;
+        }
+         /* Styling for the breakdown section */
+        .structure-breakdown {
+            background-color: #f9fafb; /* Gray-50 */
+            border: 1px solid #e5e7eb; /* Gray-200 */
+            border-radius: 0.5rem; /* 8px */
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        .structure-item {
+            display: flex;
+            align-items: flex-start; /* Align items to the top */
+            gap: 0.75rem; /* Space between icon and text */
+        }
+         .structure-item i {
+            color: #3b82f6; /* Blue-500 */
+            margin-top: 0.2rem; /* Align icon slightly lower */
+            flex-shrink: 0; /* Prevent icon shrinking */
+        }
+         .structure-item strong {
+            color: #1f2937; /* Gray-800 */
+         }
+
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                     <a href="index.html" class="flex-shrink-0 flex items-center text-xl font-bold text-gray-700 hover:text-blue-600 transition duration-150 ease-in-out">
+                        MyProject
+                    </a>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="about.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">About</a>
+                        <a href="it-items.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">IT Items</a>
+                        <a href="email.html" class="nav-active text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" aria-current="page">Formal Email</a>
+                        <a href="exposition.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Exposition</a>
+                        <a href="new-tech.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">New Tech</a>
+                        <a href="informative.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Informative</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" id="mobile-menu-button" class="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg id="menu-icon-closed" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="menu-icon-open" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="sm:hidden hidden" id="mobile-menu">
+             <div class="pt-2 pb-3 space-y-1">
+                <a href="about.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">About</a>
+                <a href="it-items.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">IT Items</a>
+                 <a href="email.html" class="block pl-3 pr-4 py-2 border-l-4 border-blue-500 bg-blue-50 text-blue-700 text-base font-medium" aria-current="page">Formal Email</a>
+                <a href="exposition.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Exposition</a>
+                <a href="new-tech.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">New Tech</a>
+                <a href="informative.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Informative</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <article>
+            <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Example: Formal Email Writing</h1>
+            <p class="text-center text-gray-600 mb-8">This section shows an example of a formal email structured correctly, with labels indicating each part.</p>
+
+            <div class="email-container">
+                <div class="email-part">
+                    <span class="email-part-label"><i class="fas fa-tag"></i>Subject</span>
+                    <p class="text-gray-800 font-medium">Inquiry Regarding Blender 3D Software Recommendation</p>
+                </div>
+
+                 <div class="email-part bg-gray-50 text-sm text-gray-500">
+                    <span class="email-part-label"><i class="fas fa-info-circle"></i>Header Info</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1">
+                        <div><strong>From:</strong> Arvel Peyoh &lt;2381024@unai.edu&gt;</div>
+                        <div><strong>To:</strong> Jane Doe &lt;example@email.com&gt;</div>
+                        <div><strong>Date:</strong> April 24, 2025</div> </div>
+                </div>
+
+                <div class="email-part">
+                    <span class="email-part-label"><i class="fas fa-handshake"></i>Salutation</span>
+                    <p class="text-gray-700">Dear Ms. Jane,</p>
+                </div>
+
+                <div class="email-part">
+                    <span class="email-part-label"><i class="fas fa-align-left"></i>Body</span>
+                    <div class="prose max-w-none text-gray-700 space-y-4 email-body-content">
+                        <p>I hope this email finds you well.</p>
+                        <p>I am writing to follow up on your previous recommendation of the Blender 3D software. I was very interested in your suggestion and have started looking into it for potential use in my personal creative projects.</p>
+                        <p>To better understand if it fits my needs, I would be grateful if you could provide some further details or point me towards reliable resources. While I understand Blender is known for being free and open-source, which is fantastic, I am particularly interested in learning more about:</p>
+                        <ul>
+                            <li><strong>Key features:</strong> Are there specific features that you think would be most beneficial for beginners interested in 3D modeling?</li>
+                            <li><strong>System requirements:</strong> Could you offer any insight into the typical hardware needed to run Blender smoothly for moderately complex projects?</li>
+                            <li><strong>Learning resources:</strong> Are there any particular tutorials, documentation sections, or communities you found especially helpful when learning the software?</li>
+                        </ul>
+                        <p>Thank you for recommending Blender and for considering my request. I appreciate your time and any information you can share.</p>
+                        <p>I look forward to hearing from you at your convenience.</p>
+                    </div>
+                </div>
+
+                <div class="email-part">
+                    <span class="email-part-label"><i class="fas fa-pencil-alt"></i>Closing</span>
+                    <p class="text-gray-700">Sincerely,</p>
+                </div>
+
+                <div class="email-part">
+                    <span class="email-part-label"><i class="fas fa-signature"></i>Signature</span>
+                    <p class="text-gray-700">
+                       Arvel Peyoh<br>
+                       089678334475<br>
+                       2381024@unai.edu</p>
+                </div>
+            </div>
+
+             <section class="structure-breakdown">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2">Formal Email Structure Breakdown</h2>
+                <div class="space-y-3 text-gray-600">
+                    <div class="structure-item">
+                        <i class="fas fa-tag fa-fw"></i>
+                        <div><strong>Subject Line:</strong> Clear and concise summary of the email's purpose. Helps the recipient prioritize.</div>
+                    </div>
+                    <div class="structure-item">
+                        <i class="fas fa-handshake fa-fw"></i>
+                        <div><strong>Salutation:</strong> Formal greeting addressing the recipient appropriately (e.g., "Dear Mr./Ms./Dr. [Last Name],", "Dear Hiring Manager,"). Use a title if known.</div>
+                    </div>
+                    <div class="structure-item">
+                        <i class="fas fa-align-left fa-fw"></i>
+                        <div><strong>Body:</strong> The main content. Start with the purpose, provide necessary details/context, clearly state requests or information, and maintain a polite, professional tone. Use paragraphs for organization.</div>
+                    </div>
+                     <div class="structure-item">
+                        <i class="fas fa-pencil-alt fa-fw"></i>
+                        <div><strong>Closing:</strong> A polite closing phrase before your name (e.g., "Sincerely,", "Regards,", "Best regards,").</div>
+                    </div>
+                     <div class="structure-item">
+                        <i class="fas fa-signature fa-fw"></i>
+                        <div><strong>Signature:</strong> Your full name. Optionally include title, company, contact information, or student ID if relevant.</div>
+                    </div>
+                </div>
+            </section>
+
+        </article>
+    </main>
+
+    <footer class="bg-white mt-auto">
+        <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+            &copy; 2025 Arvel. English 4 Final Project.
+        </div>
+    </footer>
+
+     <script>
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconClosed = document.getElementById('menu-icon-closed');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuIconClosed.classList.toggle('hidden');
+            menuIconClosed.classList.toggle('block');
+            menuIconOpen.classList.toggle('hidden');
+            menuIconOpen.classList.toggle('block');
+        });
+    </script>
+
+</body>
+</html>

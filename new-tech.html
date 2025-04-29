@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducing New Tech: Gaussian Splatting - English 4 Project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Apply Inter font globally */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        /* Style to indicate active nav link */
+        .nav-active {
+            border-bottom-width: 2px;
+            border-color: #3b82f6; /* Blue-500 */
+            color: #1f2937; /* Gray-800 */
+        }
+        /* Styling for article content */
+        .article-content {
+            line-height: 1.7;
+        }
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem; /* 12px */
+            margin-top: 2rem; /* 32px */
+            margin-bottom: 1rem; /* 16px */
+            padding-bottom: 0.5rem; /* 8px */
+            border-bottom: 2px solid #ef4444; /* Red-500 */
+        }
+        .section-heading i {
+            color: #ef4444; /* Red-500 */
+            font-size: 1.25rem; /* 20px */
+        }
+        .section-heading h2 {
+            font-size: 1.5rem; /* 24px */
+            font-weight: 600; /* Semibold */
+            color: #1f2937; /* Gray-800 */
+            margin: 0; /* Reset margin */
+        }
+         .article-content p, .article-content li {
+            margin-bottom: 1em;
+            color: #4b5563; /* Gray-600 */
+         }
+         .article-content ul {
+             list-style-type: disc;
+             padding-left: 1.5rem; /* Indent list */
+         }
+         .content-image {
+            border-radius: 0.5rem; /* 8px */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            object-fit: cover; /* Ensure image covers the area */
+            aspect-ratio: 16 / 10; /* Maintain aspect ratio */
+            cursor: pointer; /* Indicate interactivity */
+            transition: transform 0.2s ease-in-out;
+         }
+         .content-image:hover {
+            transform: scale(1.03); /* Slight zoom on hover */
+         }
+         .summary-section {
+             background-color: #fffbeb; /* Amber-50 */
+             padding: 1.5rem;
+             border-radius: 0.5rem;
+             margin-top: 2rem;
+             border-left: 4px solid #f59e0b; /* Amber-500 */
+         }
+         code {
+             background-color: #f3f4f6; /* Gray-100 */
+             padding: 0.1em 0.4em;
+             border-radius: 0.25rem;
+             font-family: monospace;
+             font-size: 0.9em;
+             color: #dc2626; /* Red-600 */
+         }
+
+        /* Modal Styles (Same as before) */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.8); padding-top: 60px; align-items: center; justify-content: center; }
+        .modal-content { margin: auto; display: block; max-width: 85%; max-height: 85%; object-fit: contain; animation-name: zoom; animation-duration: 0.4s; }
+        .modal-close { position: absolute; top: 15px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; }
+        .modal-close:hover, .modal-close:focus { color: #bbb; text-decoration: none; cursor: pointer; }
+        @keyframes zoom { from {transform:scale(0)} to {transform:scale(1)} }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                     <a href="index.html" class="flex-shrink-0 flex items-center text-xl font-bold text-gray-700 hover:text-blue-600 transition duration-150 ease-in-out">
+                        MyProject
+                    </a>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="about.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">About</a>
+                        <a href="it-items.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">IT Items</a>
+                        <a href="email.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Formal Email</a>
+                        <a href="exposition.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Exposition</a>
+                        <a href="new-tech.html" class="nav-active text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" aria-current="page">New Tech</a>
+                        <a href="informative.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Informative</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button type="button" id="mobile-menu-button" class="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg id="menu-icon-closed" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="menu-icon-open" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="sm:hidden hidden" id="mobile-menu">
+             <div class="pt-2 pb-3 space-y-1">
+                <a href="about.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">About</a>
+                <a href="it-items.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">IT Items</a>
+                <a href="email.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Formal Email</a>
+                <a href="exposition.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Exposition</a>
+                 <a href="new-tech.html" class="block pl-3 pr-4 py-2 border-l-4 border-blue-500 bg-blue-50 text-blue-700 text-base font-medium" aria-current="page">New Tech</a>
+                <a href="informative.html" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">Informative</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <article class="bg-white p-6 sm:p-10 rounded-lg shadow-xl article-content">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center">System Documentation: Introducing Gaussian Splatting</h1>
+             <p class="text-center text-lg text-gray-500 mb-10">A Novel Approach to Real-Time Radiance Field Rendering</p>
+
+            <section class="mb-12">
+                 <div class="section-heading">
+                    <i class="fas fa-rocket"></i>
+                    <h2>1. Introduction</h2>
+                </div>
+                 <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                    <div class="md:w-2/3">
+                        <p>This document introduces Gaussian Splatting, a groundbreaking technique for rendering 3D scenes, particularly those captured from real-world data. Traditional methods like polygon meshes or Neural Radiance Fields (NeRFs) often face trade-offs between rendering speed, quality, and training time. Gaussian Splatting aims to overcome these limitations, offering high-fidelity, real-time rendering capabilities.</p>
+                        <p>Developed initially for novel view synthesis of captured scenes, this technique represents a significant advancement in computer graphics. This documentation provides an overview for both technical users seeking implementation details and non-technical readers interested in its capabilities and impact.</p>
+                    </div>
+                    <div class="md:w-1/3">
+                         <img src="images/gaussian splat comp.png" alt="Conceptual comparison of rendering techniques" class="content-image">
+                    </div>
+                </div>
+            </section>
+
+             <section class="mb-12">
+                 <div class="section-heading">
+                     <i class="fas fa-atom"></i>
+                    <h2>2. Core Concept: Rendering with Gaussians</h2>
+                </div>
+                <p>Unlike traditional methods that use triangles (polygons) or complex neural networks (NeRFs) to represent scenes, Gaussian Splatting utilizes a collection of 3D Gaussian functions. Imagine representing the scene not with solid surfaces, but with millions of tiny, semi-transparent, colored clouds (Gaussians).</p>
+                <p>Each Gaussian has properties defining its position (XYZ coordinates), shape (covariance matrix, defining its stretch and rotation), color (RGB), and opacity (alpha). During rendering, these Gaussians are "splatted" (projected) onto the 2D image plane, much like throwing tiny paintballs onto a canvas. Their combined colors and opacities form the final, highly detailed image. This approach avoids the need for explicit surface geometry, allowing for efficient representation of complex details like wispy clouds or intricate textures.</p>
+            </section>
+
+            <section class="mb-12">
+                <div class="section-heading">
+                    <i class="fas fa-star"></i>
+                    <h2>3. Key Features & Advantages</h2>
+                </div>
+                 <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                     <div class="md:w-1/3 order-2 md:order-1">
+                         <img src="images/high fidelity.png" alt="Visual representing high quality and real-time speed" class="content-image">
+                    </div>
+                    <div class="md:w-2/3 order-1 md:order-2">
+                         <ul>
+                            <li><strong>High Visual Fidelity:</strong> Capable of producing photorealistic renderings, capturing fine details and complex view-dependent effects (like reflections) accurately.</li>
+                            <li><strong>Real-Time Rendering:</strong> Achieves rendering speeds suitable for interactive applications (often 30 FPS or higher on capable hardware), a significant advantage over many NeRF-based methods.</li>
+                            <li><strong>Fast Training/Optimization:</strong> Creating the Gaussian representation from input images is significantly faster than training most high-quality NeRF models.</li>
+                            <li><strong>Explicit Representation:</strong> Unlike the "black box" nature of NeRFs, the Gaussian representation is explicit, potentially allowing for easier editing, manipulation, or integration with traditional graphics pipelines in the future.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+             <section class="mb-12">
+                <div class="section-heading">
+                    <i class="fas fa-stream"></i>
+                    <h2>4. Workflow Overview</h2>
+                </div>
+                <p>The typical process involves these main stages:</p>
+                 <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                    <div class="md:w-2/3">
+                        <ol class="list-decimal pl-5 space-y-2">
+                            <li><strong>Data Capture & Preprocessing:</strong> Collect multiple images of a scene or object from various viewpoints. Use Structure-from-Motion (SfM) techniques (like COLMAP) to estimate camera positions and generate an initial sparse point cloud.</li>
+                            <li><strong>Initialization:</strong> Initialize the 3D Gaussians based on the SfM point cloud.</li>
+                            <li><strong>Optimization/Training:</strong> Iteratively adjust the properties (position, shape, color, opacity) of each Gaussian by comparing rendered images with the input photos. This step optimizes the representation to accurately match the real scene.</li>
+                            <li><strong>Real-Time Rendering:</strong> Utilize a specialized tile-based rasterizer to efficiently "splat" the optimized Gaussians onto the screen for novel view synthesis.</li>
+                         </ol>
+                    </div>
+                    <div class="md:w-1/3">
+                        <img src="images/gaussian workflow.png" alt="Diagram illustrating the workflow" class="content-image">
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <div class="section-heading">
+                    <i class="fas fa-lightbulb"></i>
+                    <h2>5. Potential Use Cases</h2>
+                </div>
+                <p>The combination of high quality and real-time performance opens up numerous possibilities:</p>
+                 <ul>
+                    <li><strong>Virtual and Augmented Reality (VR/AR):</strong> Creating highly realistic virtual environments or integrating virtual objects seamlessly into real-world views.</li>
+                    <li><strong>Digital Twins & Heritage Preservation:</strong> Capturing and exploring detailed digital replicas of real-world locations or artifacts.</li>
+                    <li><strong>Visual Effects (VFX):</strong> Generating realistic backgrounds or elements for film and television.</li>
+                    <li><strong>Gaming:</strong> Potentially used for rendering complex game environments or assets.</li>
+                    <li><strong>E-commerce & Product Visualization:</strong> Allowing users to interactively view highly realistic 3D models of products.</li>
+                </ul>
+             </section>
+
+             <section class="mb-12">
+                <div class="section-heading">
+                    <i class="fas fa-cogs"></i>
+                    <h2>6. System Requirements (General)</h2>
+                </div>
+                 <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                     <div class="md:w-1/3 order-2 md:order-1">
+                         <img src="images/rtx 3080 ti.png" alt="Illustration of GPU hardware" class="content-image">
+                    </div>
+                    <div class="md:w-2/3 order-1 md:order-2">
+                        <p>While specific requirements vary by implementation, Gaussian Splatting generally relies heavily on GPU capabilities:</p>
+                        <ul>
+                            <li><strong>GPU:</strong> A modern, powerful graphics card (typically NVIDIA GPUs with CUDA support) is essential for both the optimization/training phase and efficient real-time rendering.</li>
+                            <li><strong>VRAM:</strong> Significant GPU memory (VRAM) is often required, especially for large or complex scenes, as all Gaussian data needs to be accessible by the GPU. Amounts like 8GB might be a minimum, with 12GB, 16GB, or more being beneficial.</li>
+                            <li><strong>Software Dependencies:</strong> Implementations usually rely on libraries like CUDA, PyTorch, or custom rasterizers.</li>
+                        </ul>
+                        <p>Performance is directly tied to the number of Gaussians and the GPU's processing power and memory bandwidth.</p>
+                    </div>
+                </div>
+            </section>
+
+             <section class="summary-section">
+                 <h3 class="text-xl font-semibold text-gray-800 mb-3"><i class="fas fa-flag-checkered mr-2"></i>Summary & Future Outlook</h3>
+                 <p class="text-gray-700">Gaussian Splatting represents a paradigm shift in real-time, high-fidelity 3D scene rendering. Its ability to reconstruct and render detailed scenes from images quickly and efficiently opens doors for numerous applications previously limited by computational constraints. While still an evolving technology, its impact on VR/AR, digital capture, and interactive graphics is expected to be substantial as the techniques are further refined and integrated into more accessible tools and platforms.</p>
+            </section>
+
+        </article>
+    </main>
+
+    <footer class="bg-white mt-auto">
+        <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+            &copy; 2025 Arvel. English 4 Final Project.
+        </div>
+    </footer>
+
+     <div id="imageModal" class="modal">
+      <span class="modal-close" id="modalCloseButton">&times;</span>
+      <img class="modal-content" id="modalImage">
+    </div>
+
+     <script>
+        // --- Mobile Menu Toggle ---
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconClosed = document.getElementById('menu-icon-closed');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuIconClosed.classList.toggle('hidden');
+            menuIconClosed.classList.toggle('block');
+            menuIconOpen.classList.toggle('hidden');
+            menuIconOpen.classList.toggle('block');
+        });
+
+        // --- Image Modal Logic ---
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeBtn = document.getElementById('modalCloseButton');
+        const modalTriggerImages = document.querySelectorAll('.content-image');
+
+        function openModal(src) {
+            modal.style.display = "flex";
+            modalImg.src = src;
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        modalTriggerImages.forEach(img => {
+            img.onclick = function() { openModal(this.src); }
+        });
+
+        closeBtn.onclick = closeModal;
+        modal.onclick = function(event) { if (event.target === modal) { closeModal(); } }
+        document.addEventListener('keydown', function(event) { if (event.key === "Escape" && modal.style.display === "flex") { closeModal(); } });
+    </script>
+
+</body>
+</html>
